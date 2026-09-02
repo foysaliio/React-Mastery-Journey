@@ -5,7 +5,8 @@ const App = () => {
   return (
     <main className="min-h-screen bg-slate-900">
       <Header />
-      <section className="p-6 space-y-4">
+      <section className="grid gap-4 p-6 md:grid-cols-2">
+        <ProfileCard />
         <ProfileCard />
         <ProfileCard />
         <ProfileCard />
