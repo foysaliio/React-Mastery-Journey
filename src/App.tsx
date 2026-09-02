@@ -1,36 +1,20 @@
 export default function App() {
-  const title: string = "JSX Rules";
-  const username: string = "Foysal";
-  const isActive: boolean = true;
+  const name: string = "Foysal";
+  const role: string = "React Learner";
 
   return (
-    <main className="min-h-screen bg-slate-950 p-8 text-white">
-      {/* Rule 1: JSX should  return one parent element */}
-      <section className="rounded-xl bg-slate-900 p-6">
-        {/* Rule 2: Use className instead of class */}
-        <h1 className="text-4xl font-bold"> {title} </h1>
+    <>
+      {/* Fragment lets us return multiple elements without adding an extra DOM element */}
+      <header className="bg-slate-950 p-6 text-white">
+        <h1 className="text-4xl font-bold">React Fragments</h1>
+      </header>
 
-        {/* Rule 3: Every tag must be properly cloesed */}
-        <p className="mt-4 text-slate-300">Hello, {username}</p>
-
-        <img
-          src="https://placehold.co/200"
-          alt="Profile placeholder"
-          className="mt-6 h-20 w-20 rounded-full"
-        />
-
-        {/* Rule 4: JavaScript expressions go inside curly braces */}
-        <p className="mt-4 ">Status: {isActive ? "Active" : "Inactive"}</p>
-
-        {/* Rule 5: JSX attributes use camelCase */}
-        <button
-          type="button"
-          onClick={() => console.log("Button clicked")}
-          className="mt-6 rounded-lg bg-blue-600 px-5 py-2 font-medium"
-        >
-          Click Me
-        </button>
-      </section>
-    </main>
+      <main className="min-h-screen bg-slate-900 p-6 text-white">
+        <section className="rounded-xl bg-slate-800 p-6">
+          <h2 className="text-2xl font-semibold">{name}</h2>
+          <p className="mt-2 text-slate-300">{role}</p>
+        </section>
+      </main>
+    </>
   );
 }
