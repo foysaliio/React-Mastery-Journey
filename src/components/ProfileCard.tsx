@@ -1,38 +1,28 @@
-interface ProfileCardProps {
-  name: string;
-  role?: string;
-  experience?: number;
-  isAvailable?: boolean;
-}
+import Avatar from "./Avatar";
+import ProfileInfo from "./ProfileInfo";
 
-// Props are destructured directly in the function parameter.
-// Props Object
-// ↓
-// Destructure
-// ↓
-// Individual values
+const ProfileCard = () => {
+  const name: string = "Foysal";
+  const role: string = "Frontend Developer";
+  const imageUrl: string = "https://placehold.co/200";
 
-// props.name       → name
-// props.role       → role
-// props.experience → experience
-
-function ProfileCard({
-  name,
-  role = "React Learner",
-  experience = 0,
-  isAvailable = false,
-}: ProfileCardProps) {
   return (
-    <article className="rounded-xl bg-slate-800 p-6 text-white space-y-2">
-      <h2 className="text-2xl font-semibold"> {name} </h2>
+    <article className="flex gap-5 items-center bg-slate-800 p-6 rounded-xl">
+      <Avatar imageUrl={imageUrl} name={name} />
 
-      <p className="text-slate-300"> {role} </p>
-
-      <p className="text-slate-400">Experience: {experience} years</p>
-
-      <p className="">{isAvailable ? "Available" : "Not Available"} </p>
+      <ProfileInfo name={name} role={role} />
     </article>
   );
-}
+};
 
 export default ProfileCard;
+
+// Mental model:
+
+// Small Components
+//      ↓
+// Combine Together
+//      ↓
+// Bigger Component
+//      ↓
+// Complete UI
