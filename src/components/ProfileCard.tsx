@@ -5,6 +5,17 @@ interface ProfileCardProps {
   isAvailable: boolean;
 }
 
+// Props are destructured directly in the function parameter.
+// Props Object
+// ↓
+// Destructure
+// ↓
+// Individual values
+
+// props.name       → name
+// props.role       → role
+// props.experience → experience
+
 function ProfileCard({
   name,
   role,
