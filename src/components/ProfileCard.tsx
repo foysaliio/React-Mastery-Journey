@@ -1,8 +1,8 @@
 interface ProfileCardProps {
   name: string;
-  role: string;
-  experience: number;
-  isAvailable: boolean;
+  role?: string;
+  experience?: number;
+  isAvailable?: boolean;
 }
 
 // Props are destructured directly in the function parameter.
@@ -18,9 +18,9 @@ interface ProfileCardProps {
 
 function ProfileCard({
   name,
-  role,
-  experience,
-  isAvailable,
+  role = "React Learner",
+  experience = 0,
+  isAvailable = false,
 }: ProfileCardProps) {
   return (
     <article className="rounded-xl bg-slate-800 p-6 text-white space-y-2">
