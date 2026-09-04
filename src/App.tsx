@@ -1,14 +1,9 @@
-import StatusBadge from "./components/StatusBadge";
-import UserCard from "./components/UserCard";
+import ProfileCard from "./components/ProfileCard";
 
 const App = () => {
   return (
-    <main className="min-h-screen bg-slate-900 p-6">
-      <UserCard
-        name="Foysal"
-        role="Frontend Developer"
-        status={<StatusBadge text="Available" />}
-      />
+    <main className="min-h-screen bg-slate-950 p-8">
+      <ProfileCard />
     </main>
   );
 };
