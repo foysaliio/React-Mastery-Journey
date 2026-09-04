@@ -2,18 +2,17 @@ import ProfileHeader from "./ProfileHeader";
 import ProfileInfo from "./ProfileInfo";
 
 const ProfileCard = () => {
+  const name: string = "Foysal";
+  const role: string = "Frontend Developer";
+  const location: string = "Bangladesh";
+  const experience: number = 3;
+
   return (
     <article className="max-w-md rounded-xl bg-slate-800 p-6 text-white">
-      <ProfileHeader name="Foysal" role="Frontend Developer" />
+      {/* ProfileCard is the parent of these components */}
+      <ProfileHeader name={name} role={role} />
 
-      <ProfileInfo location="Dhaka, Bangladesh" experience={3} />
-
-      <button
-        className="mt-6 rounded-lg bg-blue-600 px-4 py-2 font-medium"
-        type="button"
-      >
-        View Profile
-      </button>
+      <ProfileInfo location={location} experience={experience} />
     </article>
   );
 };
