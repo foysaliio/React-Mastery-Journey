@@ -1,9 +1,9 @@
-import EventPlayground from "./components/EventPlayground";
+import Counter from "./components/Counter";
 
 const App = () => {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <EventPlayground />
+      <Counter />
     </main>
   );
 };
