@@ -1,9 +1,9 @@
-import TodoItems from "./Components/TodoItems";
+import ProductList from "./Components/ProductList";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <TodoItems />
+      <ProductList />
     </main>
   );
 }
