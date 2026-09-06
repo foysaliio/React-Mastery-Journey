@@ -1,12 +1,12 @@
-import AccountStatus from "./Components/AccountStatus";
+import NotificationPanel from "./Components/NotificationPanel";
 
 function App() {
-  const isLoggedIn: boolean = true;
-  const username: string = "Foysal";
+  const hasNotifications: boolean = true;
+  const count: number = 3;
 
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <AccountStatus isLoggedIn={isLoggedIn} username={username} />
+      <NotificationPanel hasNotifications={hasNotifications} count={count} />
     </main>
   );
 }
