@@ -1,11 +1,9 @@
-import UserDashboard from "./Components/UserDashboard";
+import SkillList from "./Components/SkillList";
 
 function App() {
-  const isLoggedIn: boolean = true;
-  const username: string = "Foysal";
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <UserDashboard isLoggedIn={isLoggedIn} username={username} />
+      <SkillList />
     </main>
   );
 }
