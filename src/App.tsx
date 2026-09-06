@@ -1,9 +1,9 @@
-import ProfileSettings from "./Components/ProfileSettings";
+import UserProfile from "./Components/UserProfile";
 
 const App = () => {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <ProfileSettings />
+      <UserProfile />
     </main>
   );
 };
