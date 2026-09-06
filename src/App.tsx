@@ -1,9 +1,9 @@
-import CartSummary from "./Components/CartSummary";
+import FullNameCard from "./Components/FullNameCard";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <CartSummary />
+      <FullNameCard />
     </main>
   );
 }
