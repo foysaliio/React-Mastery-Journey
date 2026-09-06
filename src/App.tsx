@@ -1,12 +1,11 @@
-import NotificationPanel from "./Components/NotificationPanel";
+import UserDashboard from "./Components/UserDashboard";
 
 function App() {
-  const hasNotifications: boolean = true;
-  const count: number = 3;
-
+  const isLoggedIn: boolean = true;
+  const username: string = "Foysal";
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <NotificationPanel hasNotifications={hasNotifications} count={count} />
+      <UserDashboard isLoggedIn={isLoggedIn} username={username} />
     </main>
   );
 }
