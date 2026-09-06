@@ -1,9 +1,9 @@
-import ProductList from "./Components/ProductList";
+import CartSummary from "./Components/CartSummary";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <ProductList />
+      <CartSummary />
     </main>
   );
 }
