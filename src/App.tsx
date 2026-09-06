@@ -1,9 +1,9 @@
-import SkillsList from "./Components/SkillsList";
+import TodoList from "./Components/TodoList";
 
 const App = () => {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <SkillsList />
+      <TodoList />
     </main>
   );
 };
