@@ -1,14 +1,12 @@
 import { useState } from "react";
 
-const ScoreCounter = () => {
+const FunctionalCounter = () => {
   const [count, setCount] = useState<number>(0);
 
-  const addOne = (): void => {
-    setCount(count + 1);
-  };
-
-  const addFive = (): void => {
-    setCount(count + 5);
+  const increaseByThree = (): void => {
+    setCount((current) => current + 1);
+    setCount((current) => current + 1);
+    setCount((current) => current + 1);
   };
 
   const resetCount = (): void => {
@@ -17,23 +15,15 @@ const ScoreCounter = () => {
 
   return (
     <section className="rounded-xl bg-slate-900 p-6 text-white">
-      <h1 className="text-3xl font-bold">Score: {count}</h1>
+      <h1 className="text-3xl font-bold">Count: {count}</h1>
 
       <div className="mt-6 flex gap-3">
         <button
           type="button"
-          onClick={addOne}
+          onClick={increaseByThree}
           className="rounded bg-blue-600 px-4 py-2"
         >
-          +1
-        </button>
-
-        <button
-          type="button"
-          onClick={addFive}
-          className="rounded bg-emerald-600 px-4 py-2"
-        >
-          +5
+          Increase +3
         </button>
 
         <button
@@ -48,4 +38,4 @@ const ScoreCounter = () => {
   );
 };
 
-export default ScoreCounter;
+export default FunctionalCounter;
