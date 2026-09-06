@@ -1,9 +1,9 @@
-import TodoList from "./Components/TodoList";
+import BatchingDemo from "./Components/BatchingDemo";
 
 const App = () => {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <TodoList />
+      <BatchingDemo />
     </main>
   );
 };
