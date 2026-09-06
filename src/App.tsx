@@ -1,9 +1,9 @@
-import SkillList from "./Components/SkillList";
+import UserList from "./Components/UserList";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <SkillList />
+      <UserList />
     </main>
   );
 }
