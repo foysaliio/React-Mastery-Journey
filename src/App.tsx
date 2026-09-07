@@ -1,9 +1,9 @@
-import FullNameCard from "./Components/FullNameCard";
+import RenderDemo from "./Components/RenderDemo";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <FullNameCard />
+      <RenderDemo />
     </main>
   );
 }
