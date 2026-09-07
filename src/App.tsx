@@ -1,23 +1,25 @@
 import { useState } from "react";
-import PlayerCard from "./Components/PlayerCard";
+import ProfilePanel from "./Components/ProfilePanel";
 
 function App() {
-  const [player, setPlayer] = useState<string>("Foysal");
+  const [isFirstUser, setIsFirstUser] = useState<boolean>(true);
 
-  const switchPlayer = (): void => {
-    setPlayer((current) => (current === "Foysal" ? "Sadik" : "Foysal"));
+  const currentName: string = isFirstUser ? "Foysal" : "Sadik";
+
+  const switchUser = (): void => {
+    setIsFirstUser((current) => !current);
   };
 
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <PlayerCard key={player} name={player} />
+      <ProfilePanel name={currentName} />
 
       <button
         type="button"
-        onClick={switchPlayer}
+        onClick={switchUser}
         className="mt-4 rounded bg-emerald-600 px-4 py-2 text-white"
       >
-        Switch Player
+        Switch User
       </button>
     </main>
   );

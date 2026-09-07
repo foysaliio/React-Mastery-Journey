@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-type PlayerCardProps = {
+type ProfilePanelProps = {
   name: string;
 };
 
-function PlayerCard({ name }: PlayerCardProps) {
+function ProfilePanel({ name }: ProfilePanelProps) {
   const [score, setScore] = useState<number>(0);
 
   const increaseScore = (): void => {
@@ -28,4 +28,4 @@ function PlayerCard({ name }: PlayerCardProps) {
   );
 }
 
-export default PlayerCard;
+export default ProfilePanel;
