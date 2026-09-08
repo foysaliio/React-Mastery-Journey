@@ -1,9 +1,9 @@
-import ControlledInput from "./Components/ControlledInput";
+import TextInputForm from "./Components/TextInputForm";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <ControlledInput />
+      <TextInputForm />
     </main>
   );
 }
