@@ -1,9 +1,9 @@
-import PreferenceForm from "./Components/PreferenceForm";
+import FeedbackForm from "./Components/FeedbackForm";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <PreferenceForm />
+      <FeedbackForm />
     </main>
   );
 }
