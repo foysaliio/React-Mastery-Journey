@@ -1,9 +1,9 @@
-import RegistrationForm from "./Components/RegistrationForm";
+import ContactForm from "./Components/ContactForm";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <RegistrationForm />
+      <ContactForm />
     </main>
   );
 }
