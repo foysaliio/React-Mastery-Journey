@@ -1,17 +1,19 @@
 import { useState } from "react";
-import ProfileEditor from "./Components/ProfileEditor";
-import ProfilePreview from "./Components/ProfilePreview";
+import Dashboard from "./Components/Dashboard";
+import ThemeToggle from "./Components/ThemeToggle";
 
 function App() {
-  const [name, setName] = useState<string>("");
+  const [isDark, setIsDark] = useState<boolean>(true);
+
+  const toggleTheme = (): void => {
+    setIsDark((current) => !current);
+  };
 
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <div className="mx-auto max-w-xl space-y-6">
-        <ProfileEditor name={name} onNameChange={setName} />
+      <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
-        <ProfilePreview name={name} />
-      </div>
+      <Dashboard isDark={isDark} />
     </main>
   );
 }
