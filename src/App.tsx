@@ -1,9 +1,9 @@
-import InputComparison from "./Components/InputComparison";
+import EffectIntro from "./Components/EffectIntro";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <InputComparison />
+      <EffectIntro />
     </main>
   );
 }
