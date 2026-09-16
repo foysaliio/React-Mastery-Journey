@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-const EffectIntro = () => {
+function EffectDemo() {
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    document.title = `Count: ${count}`;
-  }, [count]);
+    console.log("Effect ran");
+  });
 
   return (
     <section className="rounded-xl bg-slate-900 p-6 text-white">
-      <h2 className="text-2xl font-bold">Effect Introduction</h2>
+      <h2 className="text-2xl font-bold">useEffect Basics</h2>
 
       <p className="mt-4 text-slate-300">Count: {count}</p>
 
@@ -22,6 +22,7 @@ const EffectIntro = () => {
       </button>
     </section>
   );
-};
+}
 
-export default EffectIntro;
+export default EffectDemo;
+
