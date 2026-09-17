@@ -1,9 +1,9 @@
-import AutoMessage from "./Components/AutoMessage";
+import UserList from "./Components/UserList";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <AutoMessage />
+      <UserList />
     </main>
   );
 }
