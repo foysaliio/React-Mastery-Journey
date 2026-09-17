@@ -1,9 +1,9 @@
-import WindowSize from "./Components/WindowSize";
+import AutoMessage from "./Components/AutoMessage";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <WindowSize />
+      <AutoMessage />
     </main>
   );
 }
