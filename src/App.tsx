@@ -1,9 +1,9 @@
-import EffectDependencies from "./Components/EffectDependencies";
+import CleanupDemo from "./Components/CleanupDemo";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <EffectDependencies />
+      <CleanupDemo />
     </main>
   );
 }
