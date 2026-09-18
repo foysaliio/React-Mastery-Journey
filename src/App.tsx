@@ -1,9 +1,9 @@
-import EffectMistakes from "./Components/EffectMistakes";
+import RefCounter from "./Components/RefCounter";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <EffectMistakes />
+      <RefCounter />
     </main>
   );
 }
