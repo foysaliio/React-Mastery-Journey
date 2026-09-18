@@ -1,9 +1,9 @@
-import StaleResponseDemo from "./Components/StaleResponseDemo";
+import NoEffectNeeded from "./Components/NoEffectNeeded";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <StaleResponseDemo />
+      <NoEffectNeeded />
     </main>
   );
 }
