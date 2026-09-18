@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-interface User {
+type User = {
   id: number;
   name: string;
-}
+};
 
-function getUser(id: number): Promise<User> {
-  const delay = id === 1 ? 3000 : 1000;
+function fetchUser(id: number): Promise<User> {
+  const delay = id === 1 ? 2500 : 800;
 
   return new Promise((resolve) => {
     window.setTimeout(() => {
@@ -18,30 +18,33 @@ function getUser(id: number): Promise<User> {
   });
 }
 
-const RaceConditionDemo = () => {
+function StaleResponseDemo() {
   const [userId, setUserId] = useState<number>(1);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    let ignore = false;
+    let cancelled = false;
 
-    const loadUser = async (): Promise<void> => {
-      const data = await getUser(userId);
+    async function loadUser(): Promise<void> {
+      const data = await fetchUser(userId);
 
-      if (!ignore) {
-        setUser(data);
+      if (cancelled) {
+        return;
       }
-    };
+
+      setUser(data);
+    }
 
     loadUser();
 
     return () => {
-      ignore = true;
+      cancelled = true;
     };
   }, [userId]);
+
   return (
     <section className="rounded-xl bg-slate-900 p-6 text-white">
-      <h2 className="text-2xl font-bold">Race Conditions</h2>
+      <h2 className="text-2xl font-bold">Stale Responses</h2>
 
       <div className="mt-5 flex gap-3">
         <button
@@ -49,7 +52,7 @@ const RaceConditionDemo = () => {
           onClick={() => setUserId(1)}
           className="rounded bg-blue-600 px-4 py-2"
         >
-          User 1
+          Load User 1
         </button>
 
         <button
@@ -57,17 +60,17 @@ const RaceConditionDemo = () => {
           onClick={() => setUserId(2)}
           className="rounded bg-blue-600 px-4 py-2"
         >
-          User 2
+          Load User 2
         </button>
       </div>
 
-      <p className="mt-5 text-slate-300">Selected ID: {userId}</p>
+      <div className="mt-6 text-slate-300">
+        <p>Current user ID: {userId}</p>
 
-      <p className="mt-2 text-slate-300">
-        Loaded: {user?.name ?? "Loading..."}
-      </p>
+        <p className="mt-2">Result: {user?.name ?? "Loading..."}</p>
+      </div>
     </section>
   );
-};
+}
 
-export default RaceConditionDemo;
+export default StaleResponseDemo;
