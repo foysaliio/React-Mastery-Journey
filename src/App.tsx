@@ -1,9 +1,9 @@
-import NoEffectNeeded from "./Components/NoEffectNeeded";
+import EffectMistakes from "./Components/EffectMistakes";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <NoEffectNeeded />
+      <EffectMistakes />
     </main>
   );
 }
