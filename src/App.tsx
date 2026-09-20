@@ -1,9 +1,9 @@
-import PortalDemo from "./Components/PortalDemo";
+import ModalDemo from "./Components/ModalDemo";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <PortalDemo />
+      <ModalDemo />
     </main>
   );
 }
