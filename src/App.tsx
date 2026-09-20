@@ -1,9 +1,9 @@
-import MeasureBox from "./Components/MeasureBox";
+import PortalDemo from "./Components/PortalDemo";
 
 function App() {
   return (
     <main className="min-h-screen bg-slate-950 p-8">
-      <MeasureBox />
+      <PortalDemo />
     </main>
   );
 }
