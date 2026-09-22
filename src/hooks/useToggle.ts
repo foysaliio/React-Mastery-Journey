@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-export const useToggle = (initialValue = false) => {
+export function useToggle(initialValue = false) {
   const [value, setValue] = useState(initialValue);
 
-  const toggle = () => {
+  function toggle() {
     setValue((current) => !current);
-  };
+  }
 
-  const turnOn = () => {
+  function turnOn() {
     setValue(true);
-  };
+  }
 
-  const turnOff = () => {
+  function turnOff() {
     setValue(false);
-  };
+  }
 
   return {
     value,
@@ -21,4 +21,4 @@ export const useToggle = (initialValue = false) => {
     turnOn,
     turnOff,
   };
-};
+}
