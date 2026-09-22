@@ -1,4 +1,4 @@
-import type { User } from "../types/user";
+import type { CreateUserInput, User } from "../types/user";
 
 const API_URL = "https://jsonplaceholder.typicode.com";
 
@@ -14,16 +14,17 @@ export async function getUsers(signal?: AbortSignal): Promise<User[]> {
   return response.json();
 }
 
-export async function getUserById(
-  id: number,
-  signal?: AbortSignal,
-): Promise<User> {
-  const response = await fetch(`${API_URL}/users/${id}`, {
-    signal,
+export async function createUser(user: CreateUserInput): Promise<User> {
+  const response = await fetch(`${API_URL}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
   });
 
   if (!response.ok) {
-    throw new Error("Failed to load user.");
+    throw new Error("Failed to create user.");
   }
 
   return response.json();
