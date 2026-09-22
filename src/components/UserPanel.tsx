@@ -1,11 +1,13 @@
-interface UserPanelProps {
-  user: {
-    name: string;
-    role: string;
-  };
-}
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-const UserPanel = ({ user }: UserPanelProps) => {
+export default function UserPanel() {
+  const user = useContext(UserContext);
+
+  if (!user) {
+    return <p>User context is unavailable.</p>;
+  }
+
   return (
     <section className="rounded border p-4">
       <h2 className="text-xl font-semibold">User Panel</h2>
@@ -15,6 +17,4 @@ const UserPanel = ({ user }: UserPanelProps) => {
       <p>Role: {user.role}</p>
     </section>
   );
-};
-
-export default UserPanel;
+}

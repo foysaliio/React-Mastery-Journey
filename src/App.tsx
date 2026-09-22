@@ -14,8 +14,8 @@ export default function App() {
         <h1 className="text-3xl font-bold">Context Problem</h1>
 
         <div className="mt-8 space-y-6">
-          <Header user={user} />
-          <UserPanel user={user} />
+          <Header />
+          <UserPanel />
         </div>
       </main>
     </UserContext>
