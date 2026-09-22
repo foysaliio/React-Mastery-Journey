@@ -1,23 +1,19 @@
-import Header from "./components/Header";
-import UserPanel from "./components/UserPanel";
-import { UserContext } from "./context/UserContext";
+import TaskForm from "./components/TaskForm";
+
+import TaskList from "./components/TaskList";
+
+import TaskProvider from "./context/TaskProvider";
 
 export default function App() {
-  const user = {
-    name: "Foysal",
-    role: "Frontend Developer",
-  };
-
   return (
-    <UserContext value={user}>
-      <main className="mx-auto max-w-2xl p-8">
-        <h1 className="text-3xl font-bold">Context Problem</h1>
+    <TaskProvider>
+      <main className="mx-auto max-w-xl p-8">
+        <h1 className="text-3xl font-bold">Task Manager</h1>
 
-        <div className="mt-8 space-y-6">
-          <Header />
-          <UserPanel />
-        </div>
+        <TaskForm />
+
+        <TaskList />
       </main>
-    </UserContext>
+    </TaskProvider>
   );
 }
