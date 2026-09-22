@@ -1,21 +1,22 @@
-import Card from "./components/Card";
-import ProfileCard from "./components/ProfileCard";
+import Button from "./components/Button";
 
 export default function App() {
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Composition</h1>
+      <h1 className="text-3xl font-bold">Reusable Component APIs</h1>
 
-      <div className="mt-8 space-y-6">
-        <ProfileCard />
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Button>Save</Button>
 
-        <Card title="Project">
-          <p>React Mastery Journey</p>
+        <Button variant="secondary">Cancel</Button>
 
-          <p className="mt-2 text-zinc-600">
-            Learning reusable component architecture.
-          </p>
-        </Card>
+        <Button variant="danger" size="lg">
+          Delete
+        </Button>
+
+        <Button disabled onClick={() => console.log("Clicked")}>
+          Disabled
+        </Button>
       </div>
     </main>
   );
