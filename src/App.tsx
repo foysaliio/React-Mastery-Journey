@@ -1,5 +1,7 @@
 import { useReducer } from "react";
 
+type FormField = "name" | "email";
+
 type State = {
   name: string;
   email: string;
@@ -12,7 +14,7 @@ type Action =
   | {
       type: "FIELD_UPDATED";
       payload: {
-        field: "name" | "email";
+        field: FormField;
         value: string;
       };
     }
@@ -80,6 +82,16 @@ function reducer(state: State, action: Action): State {
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  function updateField(field: FormField, value: string) {
+    dispatch({
+      type: "FIELD_UPDATED",
+      payload: {
+        field,
+        value,
+      },
+    });
+  }
+
   async function handleSubmit() {
     dispatch({
       type: "SUBMIT_STARTED",
@@ -108,22 +120,14 @@ export default function App() {
 
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Reducer Actions</h1>
+      <h1 className="text-3xl font-bold">Typed Reducer</h1>
 
       <div className="mt-8 space-y-4">
         <input
           type="text"
           placeholder="Name"
           value={state.name}
-          onChange={(event) =>
-            dispatch({
-              type: "FIELD_UPDATED",
-              payload: {
-                field: "name",
-                value: event.target.value,
-              },
-            })
-          }
+          onChange={(event) => updateField("name", event.target.value)}
           className="w-full rounded border p-3"
         />
 
@@ -131,15 +135,7 @@ export default function App() {
           type="email"
           placeholder="Email"
           value={state.email}
-          onChange={(event) =>
-            dispatch({
-              type: "FIELD_UPDATED",
-              payload: {
-                field: "email",
-                value: event.target.value,
-              },
-            })
-          }
+          onChange={(event) => updateField("email", event.target.value)}
           className="w-full rounded border p-3"
         />
 
