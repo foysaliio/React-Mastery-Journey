@@ -1,47 +1,42 @@
-import { useInput } from "./hooks/useInput";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
-  const name = useInput();
-  const email = useInput();
+  const [name, setName] = useLocalStorage<string>("username", "");
 
-  function handleSubmit() {
-    console.log({
-      name: name.value,
-      email: email.value,
-    });
-
-    name.reset();
-    email.reset();
-  }
+  const [darkMode, setDarkMode] = useLocalStorage<boolean>("dark-mode", false);
 
   return (
-    <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Typed Custom Hook</h1>
+    <main
+      className={
+        darkMode
+          ? "min-h-screen bg-zinc-950 p-8 text-white"
+          : "min-h-screen bg-white p-8 text-black"
+      }
+    >
+      <div className="mx-auto max-w-xl">
+        <h1 className="text-3xl font-bold">useLocalStorage</h1>
 
-      <div className="mt-8 space-y-4">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name.value}
-          onChange={name.onChange}
-          className="w-full rounded border p-3"
-        />
+        <div className="mt-8 space-y-5">
+          <input
+            type="text"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Your name"
+            className="w-full rounded border
+              bg-transparent p-3"
+          />
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email.value}
-          onChange={email.onChange}
-          className="w-full rounded border p-3"
-        />
+          <p>Hello, {name || "Guest"}</p>
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="rounded bg-black px-5 py-3 text-white"
-        >
-          Submit
-        </button>
+          <button
+            type="button"
+            onClick={() => setDarkMode((current) => !current)}
+            className="rounded bg-black
+              px-5 py-3 text-white"
+          >
+            Toggle Theme
+          </button>
+        </div>
       </div>
     </main>
   );
