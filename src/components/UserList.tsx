@@ -21,6 +21,10 @@ export default function UserList() {
 
         const data = await getUsers(controller.signal);
 
+        if (controller.signal.aborted) {
+          return;
+        }
+
         setUsers(data);
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") {
@@ -45,19 +49,19 @@ export default function UserList() {
   }, []);
 
   if (isLoading) {
-    return <p className="mt-6">Loading users...</p>;
+    return <p>Loading users...</p>;
   }
 
   if (error) {
-    return <p className="mt-6 text-red-600">{error}</p>;
+    return <p className="text-red-600">{error}</p>;
   }
 
   if (users.length === 0) {
-    return <p className="mt-6 text-zinc-500">No users found.</p>;
+    return <p>No users found.</p>;
   }
 
   return (
-    <div className="mt-6 space-y-3">
+    <div className="space-y-3">
       {users.map((user) => (
         <article key={user.id} className="rounded border p-4">
           <p className="font-semibold">{user.name}</p>
