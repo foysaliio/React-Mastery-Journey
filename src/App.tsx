@@ -1,12 +1,12 @@
 import { useReducer } from "react";
 
-type State = {
+interface State {
   name: string;
   email: string;
   isSubmitting: boolean;
   error: string | null;
   isSuccess: boolean;
-};
+}
 
 type Action =
   | {
@@ -39,6 +39,7 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         [action.field]: action.value,
+        isSuccess: false,
       };
 
     case "SUBMIT_STARTED":
@@ -72,10 +73,10 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function App() {
+const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function handleSubmit() {
+  const handleSubmit = async () => {
     dispatch({
       type: "SUBMIT_STARTED",
     });
@@ -97,11 +98,11 @@ export default function App() {
           error instanceof Error ? error.message : "Something went wrong.",
       });
     }
-  }
+  };
 
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">useReducer Example</h1>
+      <h1 className="text-3xl font-bold">Reducer Function</h1>
 
       <div className="mt-8 space-y-4">
         <input
@@ -149,4 +150,6 @@ export default function App() {
       </div>
     </main>
   );
-}
+};
+
+export default App;
