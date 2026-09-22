@@ -1,34 +1,35 @@
-import { useState } from "react";
-import { useDebounce } from "./hooks/useDebounce";
+import { useFetch } from "./hooks/useFetch";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
 
 export default function App() {
-  const [search, setSearch] = useState("");
-
-  const debouncedSearch = useDebounce(search, 500);
+  const { data, isLoading, error } = useFetch<User[]>(
+    "https://jsonplaceholder.typicode.com/users",
+  );
 
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">useDebounce</h1>
+      <h1 className="text-3xl font-bold">useFetch</h1>
 
-      <div className="mt-8 space-y-4">
-        <input
-          type="search"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          placeholder="Search..."
-          className="w-full rounded border p-3"
-        />
+      {isLoading && <p className="mt-6">Loading...</p>}
 
-        <div className="rounded border p-4">
-          <p>
-            Current value: <strong>{search}</strong>
-          </p>
+      {error && <p className="mt-6 text-red-600">{error}</p>}
 
-          <p className="mt-2">
-            Debounced value: <strong>{debouncedSearch}</strong>
-          </p>
+      {data && (
+        <div className="mt-6 space-y-3">
+          {data.map((user) => (
+            <article key={user.id} className="rounded border p-4">
+              <p className="font-semibold">{user.name}</p>
+
+              <p className="text-sm text-zinc-600">{user.email}</p>
+            </article>
+          ))}
         </div>
-      </div>
+      )}
     </main>
   );
 }
