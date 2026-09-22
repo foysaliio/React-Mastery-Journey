@@ -1,28 +1,32 @@
 import { useReducer } from "react";
 
-interface State {
+type State = {
   name: string;
   email: string;
   isSubmitting: boolean;
   error: string | null;
   isSuccess: boolean;
-}
+};
 
 type Action =
   | {
-      type: "UPDATE_FIELD";
-      field: "name" | "email";
-      value: string;
+      type: "FIELD_UPDATED";
+      payload: {
+        field: "name" | "email";
+        value: string;
+      };
     }
   | {
       type: "SUBMIT_STARTED";
     }
   | {
-      type: "SUBMIT_SUCCESS";
+      type: "SUBMIT_SUCCEEDED";
     }
   | {
       type: "SUBMIT_FAILED";
-      message: string;
+      payload: {
+        message: string;
+      };
     };
 
 const initialState: State = {
@@ -35,10 +39,10 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "UPDATE_FIELD":
+    case "FIELD_UPDATED":
       return {
         ...state,
-        [action.field]: action.value,
+        [action.payload.field]: action.payload.value,
         isSuccess: false,
       };
 
@@ -50,7 +54,7 @@ function reducer(state: State, action: Action): State {
         isSuccess: false,
       };
 
-    case "SUBMIT_SUCCESS":
+    case "SUBMIT_SUCCEEDED":
       return {
         ...state,
         name: "",
@@ -64,7 +68,7 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         isSubmitting: false,
-        error: action.message,
+        error: action.payload.message,
         isSuccess: false,
       };
 
@@ -73,10 +77,10 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-const App = () => {
+export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleSubmit = async () => {
+  async function handleSubmit() {
     dispatch({
       type: "SUBMIT_STARTED",
     });
@@ -89,20 +93,22 @@ const App = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       dispatch({
-        type: "SUBMIT_SUCCESS",
+        type: "SUBMIT_SUCCEEDED",
       });
     } catch (error) {
       dispatch({
         type: "SUBMIT_FAILED",
-        message:
-          error instanceof Error ? error.message : "Something went wrong.",
+        payload: {
+          message:
+            error instanceof Error ? error.message : "Something went wrong.",
+        },
       });
     }
-  };
+  }
 
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Reducer Function</h1>
+      <h1 className="text-3xl font-bold">Reducer Actions</h1>
 
       <div className="mt-8 space-y-4">
         <input
@@ -111,9 +117,11 @@ const App = () => {
           value={state.name}
           onChange={(event) =>
             dispatch({
-              type: "UPDATE_FIELD",
-              field: "name",
-              value: event.target.value,
+              type: "FIELD_UPDATED",
+              payload: {
+                field: "name",
+                value: event.target.value,
+              },
             })
           }
           className="w-full rounded border p-3"
@@ -125,9 +133,11 @@ const App = () => {
           value={state.email}
           onChange={(event) =>
             dispatch({
-              type: "UPDATE_FIELD",
-              field: "email",
-              value: event.target.value,
+              type: "FIELD_UPDATED",
+              payload: {
+                field: "email",
+                value: event.target.value,
+              },
             })
           }
           className="w-full rounded border p-3"
@@ -150,6 +160,4 @@ const App = () => {
       </div>
     </main>
   );
-};
-
-export default App;
+}
