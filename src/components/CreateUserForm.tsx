@@ -1,77 +1,91 @@
-import { useState, type FormEvent } from "react";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useForm, type SubmitHandler } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { createUser } from "../services/userService";
 
-import type { CreateUserInput, User } from "../types/user";
+import { userSchema, type UserFormData } from "../schemas/userSchema";
+
+import type { User } from "../types/user";
 
 export default function CreateUserForm() {
-  const [name, setName] = useState("");
-
-  const [email, setEmail] = useState("");
-
   const queryClient = useQueryClient();
 
-  const createUserMutation = useMutation({
-    mutationFn: createUser,
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<UserFormData>({
+    resolver: zodResolver(userSchema),
 
-    onSuccess: (createdUser) => {
+    defaultValues: {
+      name: "",
+      email: "",
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: createUser,
+  });
+
+  const onSubmit: SubmitHandler<UserFormData> = async (data) => {
+    try {
+      const createdUser = await mutation.mutateAsync(data);
+
       queryClient.setQueryData<User[]>(["users"], (currentUsers = []) => [
         createdUser,
         ...currentUsers,
       ]);
 
-      setName("");
-      setEmail("");
-    },
-  });
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const newUser: CreateUserInput = {
-      name: name.trim(),
-      email: email.trim(),
-    };
-
-    if (!newUser.name || !newUser.email) {
-      return;
+      reset();
+    } catch {
+      // Mutation error is shown below.
     }
-
-    createUserMutation.mutate(newUser);
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <input
-        type="text"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Name"
-        className="w-full rounded border p-3"
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div>
+        <input
+          {...register("name")}
+          type="text"
+          placeholder="Name"
+          className="w-full rounded border p-3"
+        />
 
-      <input
-        type="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        placeholder="Email"
-        className="w-full rounded border p-3"
-      />
+        {errors.name && (
+          <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+        )}
+      </div>
+
+      <div>
+        <input
+          {...register("email")}
+          type="email"
+          placeholder="Email"
+          className="w-full rounded border p-3"
+        />
+
+        {errors.email && (
+          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+        )}
+      </div>
 
       <button
         type="submit"
-        disabled={createUserMutation.isPending}
+        disabled={isSubmitting}
         className="rounded bg-black
           px-5 py-3 text-white
           disabled:opacity-50"
       >
-        {createUserMutation.isPending ? "Creating..." : "Create User"}
+        {isSubmitting ? "Creating..." : "Create User"}
       </button>
 
-      {createUserMutation.isError && (
-        <p className="text-red-600">{createUserMutation.error.message}</p>
+      {mutation.isError && (
+        <p className="text-red-600">{mutation.error.message}</p>
       )}
     </form>
   );
