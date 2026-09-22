@@ -1,52 +1,83 @@
-import { useCallback, useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState, useTransition } from "react";
 
-import ProfileCard from "./components/ProfileCard";
+const items = Array.from({ length: 5000 }, (_, index) => `Item ${index + 1}`);
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const [search, setSearch] = useState("");
 
-  const [users] = useState(["Foysal", "Alex", "Sarah", "John"]);
+  const [tab, setTab] = useState("home");
 
-  const sortedUsers = useMemo(() => {
-    console.log("Sorting users...");
+  const [isPending, startTransition] = useTransition();
 
-    return [...users].sort();
-  }, [users]);
+  const deferredSearch = useDeferredValue(search);
 
-  const handleFollow = useCallback(() => {
-    console.log("Following Foysal");
-  }, []);
+  const filteredItems = useMemo(() => {
+    const query = deferredSearch.toLowerCase();
+
+    return items.filter((item) => item.toLowerCase().includes(query));
+  }, [deferredSearch]);
+
+  function changeTab(nextTab: string) {
+    startTransition(() => {
+      setTab(nextTab);
+    });
+  }
 
   return (
-    <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">React Memoization</h1>
+    <main className="mx-auto max-w-2xl p-8">
+      <h1 className="text-3xl font-bold">Concurrent & Deferred UI</h1>
 
-      <div className="mt-8 space-y-6">
-        <div className="rounded border p-5">
-          <p>Count: {count}</p>
+      <section className="mt-8">
+        <input
+          type="search"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search items..."
+          className="w-full rounded border p-3"
+        />
+
+        <p className="mt-3 text-sm text-zinc-500">
+          Showing results for: {deferredSearch}
+        </p>
+
+        <div className="mt-4 max-h-60 overflow-auto">
+          {filteredItems.slice(0, 50).map((item) => (
+            <p key={item} className="border-b py-2">
+              {item}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => changeTab("home")}
+            className="rounded border px-4 py-2"
+          >
+            Home
+          </button>
 
           <button
             type="button"
-            onClick={() => setCount((current) => current + 1)}
-            className="mt-3 rounded bg-black
-              px-4 py-2 text-white"
+            onClick={() => changeTab("dashboard")}
+            className="rounded border px-4 py-2"
           >
-            Increment
+            Dashboard
           </button>
         </div>
 
-        <ProfileCard name="Foysal" onFollow={handleFollow} />
-
-        <section className="rounded border p-5">
-          <h2 className="font-semibold">Sorted Users</h2>
-
-          <ul className="mt-3 space-y-1">
-            {sortedUsers.map((user) => (
-              <li key={user}>{user}</li>
-            ))}
-          </ul>
-        </section>
-      </div>
+        <div className="mt-5 rounded border p-5">
+          {isPending ? (
+            <p>Updating view...</p>
+          ) : (
+            <p>
+              Current tab: <strong>{tab}</strong>
+            </p>
+          )}
+        </div>
+      </section>
     </main>
   );
 }
