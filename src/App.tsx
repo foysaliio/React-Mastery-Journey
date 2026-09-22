@@ -1,22 +1,28 @@
-import Button from "./components/Button";
+import { useState } from "react";
+
+import Toggle from "./components/Toggle";
 
 export default function App() {
+  const [notifications, setNotifications] = useState(false);
+
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Reusable Component APIs</h1>
+      <h1 className="text-3xl font-bold">Controlled Component</h1>
 
-      <div className="mt-8 flex flex-wrap gap-3">
-        <Button>Save</Button>
+      <div className="mt-8 space-y-4">
+        <Toggle checked={notifications} onChange={setNotifications} />
 
-        <Button variant="secondary">Cancel</Button>
+        <p>
+          Notifications: <strong>{notifications ? "On" : "Off"}</strong>
+        </p>
 
-        <Button variant="danger" size="lg">
-          Delete
-        </Button>
-
-        <Button disabled onClick={() => console.log("Clicked")}>
-          Disabled
-        </Button>
+        <button
+          type="button"
+          onClick={() => setNotifications(false)}
+          className="rounded bg-black px-4 py-2 text-white"
+        >
+          Turn Off From Parent
+        </button>
       </div>
     </main>
   );
