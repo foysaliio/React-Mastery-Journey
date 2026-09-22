@@ -1,8 +1,11 @@
+import { memo } from "react";
+
 type ProfileCardProps = {
   name: string;
+  onFollow: () => void;
 };
 
-export default function ProfileCard({ name }: ProfileCardProps) {
+function ProfileCard({ name, onFollow }: ProfileCardProps) {
   console.log("ProfileCard rendered");
 
   return (
@@ -10,6 +13,17 @@ export default function ProfileCard({ name }: ProfileCardProps) {
       <h2 className="text-xl font-semibold">{name}</h2>
 
       <p className="mt-2 text-zinc-600">Frontend Developer</p>
+
+      <button
+        type="button"
+        onClick={onFollow}
+        className="mt-4 rounded border
+          px-4 py-2"
+      >
+        Follow
+      </button>
     </section>
   );
 }
+
+export default memo(ProfileCard);
