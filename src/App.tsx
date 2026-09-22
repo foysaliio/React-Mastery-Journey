@@ -1,41 +1,32 @@
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useState } from "react";
+import { useDebounce } from "./hooks/useDebounce";
 
 export default function App() {
-  const [name, setName] = useLocalStorage<string>("username", "");
+  const [search, setSearch] = useState("");
 
-  const [darkMode, setDarkMode] = useLocalStorage<boolean>("dark-mode", false);
+  const debouncedSearch = useDebounce(search, 500);
 
   return (
-    <main
-      className={
-        darkMode
-          ? "min-h-screen bg-zinc-950 p-8 text-white"
-          : "min-h-screen bg-white p-8 text-black"
-      }
-    >
-      <div className="mx-auto max-w-xl">
-        <h1 className="text-3xl font-bold">useLocalStorage</h1>
+    <main className="mx-auto max-w-xl p-8">
+      <h1 className="text-3xl font-bold">useDebounce</h1>
 
-        <div className="mt-8 space-y-5">
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Your name"
-            className="w-full rounded border
-              bg-transparent p-3"
-          />
+      <div className="mt-8 space-y-4">
+        <input
+          type="search"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search..."
+          className="w-full rounded border p-3"
+        />
 
-          <p>Hello, {name || "Guest"}</p>
+        <div className="rounded border p-4">
+          <p>
+            Current value: <strong>{search}</strong>
+          </p>
 
-          <button
-            type="button"
-            onClick={() => setDarkMode((current) => !current)}
-            className="rounded bg-black
-              px-5 py-3 text-white"
-          >
-            Toggle Theme
-          </button>
+          <p className="mt-2">
+            Debounced value: <strong>{debouncedSearch}</strong>
+          </p>
         </div>
       </div>
     </main>
