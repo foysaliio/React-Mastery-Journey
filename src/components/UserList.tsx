@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
+import { getUsers } from "../services/userService";
+
+import type { User } from "../types/user";
 
 export default function UserList() {
   const [users, setUsers] = useState<User[]>([]);
@@ -14,43 +12,35 @@ export default function UserList() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let ignore = false;
+    const controller = new AbortController();
 
-    async function fetchUsers() {
+    async function loadUsers() {
       try {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users",
-        );
+        const data = await getUsers(controller.signal);
 
-        if (!response.ok) {
-          throw new Error("Failed to load users.");
-        }
-
-        const data = (await response.json()) as User[];
-
-        if (!ignore) {
-          setUsers(data);
-        }
+        setUsers(data);
       } catch (error) {
-        if (!ignore) {
-          setError(
-            error instanceof Error ? error.message : "Something went wrong.",
-          );
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
         }
+
+        setError(
+          error instanceof Error ? error.message : "Something went wrong.",
+        );
       } finally {
-        if (!ignore) {
+        if (!controller.signal.aborted) {
           setIsLoading(false);
         }
       }
     }
 
-    fetchUsers();
+    loadUsers();
 
     return () => {
-      ignore = true;
+      controller.abort();
     };
   }, []);
 
