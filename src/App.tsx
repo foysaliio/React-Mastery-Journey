@@ -1,20 +1,19 @@
 import { useReducer } from "react";
 
-type FormField = "name" | "email";
+type Status = "idle" | "submitting" | "success" | "error";
 
 type State = {
   name: string;
   email: string;
-  isSubmitting: boolean;
+  status: Status;
   error: string | null;
-  isSuccess: boolean;
 };
 
 type Action =
   | {
       type: "FIELD_UPDATED";
       payload: {
-        field: FormField;
+        field: "name" | "email";
         value: string;
       };
     }
@@ -29,14 +28,16 @@ type Action =
       payload: {
         message: string;
       };
+    }
+  | {
+      type: "RESET";
     };
 
 const initialState: State = {
   name: "",
   email: "",
-  isSubmitting: false,
+  status: "idle",
   error: null,
-  isSuccess: false,
 };
 
 function reducer(state: State, action: Action): State {
@@ -45,15 +46,15 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         [action.payload.field]: action.payload.value,
-        isSuccess: false,
+        status: "idle",
+        error: null,
       };
 
     case "SUBMIT_STARTED":
       return {
         ...state,
-        isSubmitting: true,
+        status: "submitting",
         error: null,
-        isSuccess: false,
       };
 
     case "SUBMIT_SUCCEEDED":
@@ -61,18 +62,19 @@ function reducer(state: State, action: Action): State {
         ...state,
         name: "",
         email: "",
-        isSubmitting: false,
+        status: "success",
         error: null,
-        isSuccess: true,
       };
 
     case "SUBMIT_FAILED":
       return {
         ...state,
-        isSubmitting: false,
+        status: "error",
         error: action.payload.message,
-        isSuccess: false,
       };
+
+    case "RESET":
+      return initialState;
 
     default:
       return state;
@@ -81,16 +83,6 @@ function reducer(state: State, action: Action): State {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  function updateField(field: FormField, value: string) {
-    dispatch({
-      type: "FIELD_UPDATED",
-      payload: {
-        field,
-        value,
-      },
-    });
-  }
 
   async function handleSubmit() {
     dispatch({
@@ -118,16 +110,26 @@ export default function App() {
     }
   }
 
+  const isSubmitting = state.status === "submitting";
+
   return (
     <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-3xl font-bold">Typed Reducer</h1>
+      <h1 className="text-3xl font-bold">State Machine Mindset</h1>
 
       <div className="mt-8 space-y-4">
         <input
           type="text"
           placeholder="Name"
           value={state.name}
-          onChange={(event) => updateField("name", event.target.value)}
+          onChange={(event) =>
+            dispatch({
+              type: "FIELD_UPDATED",
+              payload: {
+                field: "name",
+                value: event.target.value,
+              },
+            })
+          }
           className="w-full rounded border p-3"
         />
 
@@ -135,23 +137,46 @@ export default function App() {
           type="email"
           placeholder="Email"
           value={state.email}
-          onChange={(event) => updateField("email", event.target.value)}
+          onChange={(event) =>
+            dispatch({
+              type: "FIELD_UPDATED",
+              payload: {
+                field: "email",
+                value: event.target.value,
+              },
+            })
+          }
           className="w-full rounded border p-3"
         />
 
         <button
           onClick={handleSubmit}
-          disabled={state.isSubmitting}
+          disabled={isSubmitting}
           className="rounded bg-black px-5 py-3 text-white
             disabled:opacity-50"
         >
-          {state.isSubmitting ? "Submitting..." : "Submit"}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
 
-        {state.error && <p className="text-red-600">{state.error}</p>}
+        {state.status === "error" && state.error && (
+          <p className="text-red-600">{state.error}</p>
+        )}
 
-        {state.isSuccess && (
-          <p className="text-green-600">Submitted successfully.</p>
+        {state.status === "success" && (
+          <div className="space-y-3">
+            <p className="text-green-600">Submitted successfully.</p>
+
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "RESET",
+                })
+              }
+              className="rounded border px-4 py-2"
+            >
+              Reset
+            </button>
+          </div>
         )}
       </div>
     </main>
