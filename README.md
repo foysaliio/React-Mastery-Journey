@@ -9,21 +9,27 @@ A structured, hands-on journey through modern React where I focused not only on 
 <br />
 
 <img src="https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+
 <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
 
 <br />
 <br />
 
 <img src="https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="TanStack Query" />
+
 <img src="https://img.shields.io/badge/React_Hook_Form-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white" alt="React Hook Form" />
+
 <img src="https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white" alt="Zod" />
 
 <br />
 <br />
 
 <img src="https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest" />
+
 <img src="https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white" alt="Testing Library" />
 
 </div>
@@ -40,16 +46,16 @@ The goal was never to memorize hooks or collect isolated examples.
 
 I wanted to understand:
 
-• Why React renders the way it does
-• Where state should live
-• When state should be local, shared, derived, or remote
-• How components should communicate
-• How effects synchronize React with external systems
-• How server data differs from client state
-• How forms, validation, mutations, and caching fit together
-• How production React applications should be structured
-• How performance should be measured before it is optimized
-• How reliable UI should handle loading, failure, empty data, accessibility, and testing
+- Why React renders the way it does
+- Where state should live
+- When state should be local, shared, derived, or remote
+- How components should communicate
+- How effects synchronize React with external systems
+- How server data differs from client state
+- How forms, validation, mutations, and caching fit together
+- How production React applications should be structured
+- How performance should be measured before it is optimized
+- How reliable UI should handle loading, failure, empty data, accessibility, and testing
 
 This repository captures that progression.
 
@@ -100,11 +106,11 @@ The journey started by building the mental model behind React itself.
 
 **Core focus**
 
-• JSX and rendering
-• Components
-• Expressions in JSX
-• Component structure
-• React application fundamentals
+- JSX and rendering
+- Components
+- Expressions in JSX
+- Component structure
+- React application fundamentals
 
 **Outcome**
 
@@ -118,12 +124,12 @@ This phase focused on designing UI through reusable component boundaries.
 
 **Core focus**
 
-• Props
-• Type safe component APIs
-• Children
-• Composition
-• Reusable UI patterns
-• Component responsibility
+- Props
+- Type safe component APIs
+- Children
+- Composition
+- Reusable UI patterns
+- Component responsibility
 
 **Outcome**
 
@@ -137,11 +143,11 @@ This module introduced React's state driven interaction model.
 
 **Core focus**
 
-• `useState`
-• Event handling
-• Functional updates
-• Controlled interactions
-• Interactive UI patterns
+- `useState`
+- Event handling
+- Functional updates
+- Controlled interactions
+- Interactive UI patterns
 
 **Outcome**
 
@@ -155,14 +161,14 @@ This was one of the most important foundations in the journey.
 
 **Core focus**
 
-• Conditional rendering
-• Lists and keys
-• State snapshots
-• Batching
-• Immutable updates
-• Derived state
-• State ownership
-• Single source of truth
+- Conditional rendering
+- Lists and keys
+- State snapshots
+- Batching
+- Immutable updates
+- Derived state
+- State ownership
+- Single source of truth
 
 **Outcome**
 
@@ -176,14 +182,14 @@ Forms became the practical environment for understanding state relationships.
 
 **Core focus**
 
-• Controlled forms
-• Input handling
-• Form state
-• Validation fundamentals
-• Lifting state
-• State sharing
-• State shape
-• State ownership
+- Controlled forms
+- Input handling
+- Form state
+- Validation fundamentals
+- Lifting state
+- State sharing
+- State shape
+- State ownership
 
 **Outcome**
 
@@ -197,13 +203,13 @@ This module changed how I think about `useEffect`.
 
 **Core focus**
 
-• `useEffect`
-• Dependency management
-• Cleanup
-• Synchronization
-• External systems
-• Fetching fundamentals
-• Avoiding unnecessary effects
+- `useEffect`
+- Dependency management
+- Cleanup
+- Synchronization
+- External systems
+- Fetching fundamentals
+- Avoiding unnecessary effects
 
 **Outcome**
 
@@ -217,17 +223,17 @@ This phase explored the places where React needs controlled access outside its n
 
 **Core focus**
 
-• `useRef`
-• Ref vs state
-• DOM references
-• Focus management
-• Scrolling
-• Mutable refs
-• Ref as a prop
-• Imperative handles
-• `useLayoutEffect`
-• Portals
-• `useId`
+- `useRef`
+- Ref vs state
+- DOM references
+- Focus management
+- Scrolling
+- Mutable refs
+- Ref as a prop
+- Imperative handles
+- `useLayoutEffect`
+- Portals
+- `useId`
 
 **Outcome**
 
@@ -241,15 +247,15 @@ Here the focus moved toward larger state systems.
 
 **Core focus**
 
-• `useReducer`
-• Reducer functions
-• Actions
-• Discriminated unions
-• State machine thinking
-• Context
-• Context providers
-• Reducer with Context
-• Global state decisions
+- `useReducer`
+- Reducer functions
+- Actions
+- Discriminated unions
+- State machine thinking
+- Context
+- Context providers
+- Reducer with Context
+- Global state decisions
 
 **Outcome**
 
@@ -263,17 +269,17 @@ This module focused heavily on reusable behavior and component API design.
 
 **Core focus**
 
-• Custom Hooks
-• Rules of Hooks
-• Generic TypeScript hooks
-• `useLocalStorage`
-• `useDebounce`
-• Fetching abstractions
-• Composition over configuration
-• Controlled components
-• Compound components
-• Headless component thinking
-• Avoiding over abstraction
+- Custom Hooks
+- Rules of Hooks
+- Generic TypeScript hooks
+- `useLocalStorage`
+- `useDebounce`
+- Fetching abstractions
+- Composition over configuration
+- Controlled components
+- Compound components
+- Headless component thinking
+- Avoiding over abstraction
 
 **Outcome**
 
@@ -287,21 +293,21 @@ This phase connected React to real application data flows.
 
 **Core focus**
 
-• Client data fetching
-• Async UI states
-• Service layer architecture
-• Request lifecycle
-• `AbortController`
-• Race condition awareness
-• Mutations
-• Optimistic UI
-• Client state vs server state
-• TanStack Query
-• Query keys
-• Cache management
-• Query invalidation
-• React Hook Form
-• Zod validation
+- Client data fetching
+- Async UI states
+- Service layer architecture
+- Request lifecycle
+- `AbortController`
+- Race condition awareness
+- Mutations
+- Optimistic UI
+- Client state vs server state
+- TanStack Query
+- Query keys
+- Cache management
+- Query invalidation
+- React Hook Form
+- Zod validation
 
 **Outcome**
 
@@ -315,28 +321,28 @@ The final module brought the previous concepts together from a production engine
 
 **Core focus**
 
-• Re rendering
-• Render and commit phases
-• `React.memo`
-• `useMemo`
-• `useCallback`
-• `useTransition`
-• `useDeferredValue`
-• Concurrent UI
-• Lazy loading
-• Suspense
-• Code splitting
-• `useActionState`
-• `useOptimistic`
-• React Compiler mental model
-• Error Boundaries
-• Accessibility
-• Production UI states
-• Vitest
-• React Testing Library
-• Feature based architecture
-• React DevTools
-• React to Next.js transition
+- Re rendering
+- Render and commit phases
+- `React.memo`
+- `useMemo`
+- `useCallback`
+- `useTransition`
+- `useDeferredValue`
+- Concurrent UI
+- Lazy loading
+- Suspense
+- Code splitting
+- `useActionState`
+- `useOptimistic`
+- React Compiler mental model
+- Error Boundaries
+- Accessibility
+- Production UI states
+- Vitest
+- React Testing Library
+- Feature based architecture
+- React DevTools
+- React to Next.js transition
 
 **Outcome**
 
@@ -405,13 +411,13 @@ Fresh Interface
 
 Server state introduced a different class of problems:
 
-• Caching
-• Freshness
-• Refetching
-• Mutation
-• Synchronization
-• Optimistic updates
-• Request lifecycle
+- Caching
+- Freshness
+- Refetching
+- Mutation
+- Synchronization
+- Optimistic updates
+- Request lifecycle
 
 This is why server state should not automatically be treated like normal local React state.
 
@@ -471,16 +477,16 @@ src/
 
 ### Architecture Principles
 
-• Keep feature specific code close to its feature
-• Keep state close to its owner
-• Prefer local state before reaching for global state
-• Separate server state from client state
-• Build components around meaningful responsibilities
-• Avoid premature abstractions
-• Avoid unnecessary Effects
-• Handle failure states deliberately
-• Optimize after measuring
-• Prefer maintainability over cleverness
+- Keep feature specific code close to its feature
+- Keep state close to its owner
+- Prefer local state before reaching for global state
+- Separate server state from client state
+- Build components around meaningful responsibilities
+- Avoid premature abstractions
+- Avoid unnecessary Effects
+- Handle failure states deliberately
+- Optimize after measuring
+- Prefer maintainability over cleverness
 
 ---
 
@@ -710,7 +716,7 @@ I wanted to finish React with a better understanding of how to **reason about Re
 
 ### React Mastery Journey
 
-**Foundation built. Architecture understood. Ready for the next layer.**
+**Built through practice. Sharpened through repetition. Ready for what comes next.**
 
 <br />
 
