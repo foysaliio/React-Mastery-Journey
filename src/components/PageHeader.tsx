@@ -8,7 +8,7 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
     <header>
       <h1 className="text-3xl font-medium">{title}</h1>
 
-      <p className="mt-2 text-zinc-600">{description}</p>
+      <p className="mt-2 text-zinc-700">{description}</p>
     </header>
   );
 }
